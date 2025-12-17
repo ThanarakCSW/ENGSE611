@@ -7,38 +7,38 @@
     <title>Examlab1</title>
 </head>
 
-<body>
+<body bgcolor="#E9EBEE">
     <center>
-        <form bgcolor="#FFFFFF">
-            <table border="0" cellpadding="10" cellspacing="0">
+        <form>
+            <table border="0" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
                 <tr>
-                    <th colspan="2" align="left">
-                        <h1>สมัคร</h1>
-                    </th>
-                    <th>X</th>
+                    <td colspan="3" align="left">
+                        <strong>สมัคร</strong><br>
+                        <font face="tahoma" size="2" color="#808080">ง่ายและเร็ว</font>
+                        <hr>
+                    </td>
+                    <td>
+                        <font face="sans-serif">X</font>
+                    </td>
                 </tr>
                 <tr>
-                    <th colspan="2" align="left">
-                        <p>ง่ายและเร็ว</p>
-                    </th>
+                    <td colspan="1"><input type="text" id="fname" name="fname" placeholder="ชื่อ" size="15"></td>
+                    <td colspan="1"><input type="text" id="lname" name="lname" placeholder="นามสกุล" size="15"></td>
                 </tr>
                 <tr>
-                    <td><input type="text" id="fname" name="fname" placeholder="ชื่อ"></td>
-                    <td><input type="text" id="lname" name="lname" placeholder="นามสกุล"></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input type="text" id="contact" name="contact"
+                    <td colspan="4"><input type="text" id="contact" name="contact" size="40"
                             placeholder="หมายเลขโทรศัพท์หรืออีเมล">
                     </td>
-                    <td></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="password" id="password" name="password" placeholder="รหัสผ่านใหม่">
+                    <td colspan="4"><input type="password" id="password" name="password" size="40"
+                            placeholder="รหัสผ่านใหม่">
                     </td>
-                    <td></td>
                 </tr>
                 <tr>
-                    <td> <label for="birthday"><strong>วันเกิด</strong></label><br>
+                    <td> <label for="birthday"><strong>
+                                <font color="#90949c" size="2">วันเกิด</font>
+                            </strong></label><br>
                         <select name="birthday_day" id="birthday_day">
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -73,7 +73,7 @@
                             <option value="31">31</option>
                         </select>
                         <select name="birthday_month" id="birthday_month">
-                            <option value="1">ม.</option>
+                            <option value="1">ม.ค.</option>
                             <option value="2">ก.พ.</option>
                             <option value="3">มี.ค.</option>
                             <option value="4">เม.ย.</option>
@@ -115,32 +115,68 @@
                         </select>
                     </td>
                 </tr>
+
                 <tr>
-                    <td>
-                        <label for="gender"><strong>เพศ</strong></label><br>
-
-
+                    <td colspan="4" align="left">
+                        <label>
+                            <font color="#90949c" size="2"><strong>เพศ</strong></font>
+                        </label>
                     </td>
-                <tr>
-                    <td>
-                        <input type="radio" id="female" name="gender" value="female">หญิง
-
-                    </td>
-                    <td><input type="radio" id="male" name="gender" value="male">ชาย<br></td>
-                </tr>
                 </tr>
 
                 <tr>
-                    <td colspan="3">
-                        <p>เมื่อคลิก สมัคร แสดงว่าคุณยอมรับข้อกำหนด นโยบายข้อมูล และ นโยบาย<br>
-                            คุกกี้ของเรา คุณอาจได้รับการแจ้งเตือนทาง SMS<br>
-                            จากเรา และไม่สามารถเลือกไม่รับได้ในภายหลัง</p>
+                    <td colspan="4">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td width="48%">
+                                    <table width="100%" border="0" cellspacing="1" cellpadding="5" bgcolor="#bdc7d8">
+                                        <tr>
+                                            <td bgcolor="#FFFFFF">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td align="left">หญิง</td>
+                                                        <td align="right"><input type="radio" name="gender"
+                                                                value="female"></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+
+                                <td width="4%"></td>
+
+                                <td width="48%">
+                                    <table width="100%" border="0" cellspacing="1" cellpadding="5" bgcolor="#bdc7d8">
+                                        <tr>
+                                            <td bgcolor="#FFFFFF">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td align="left">ชาย</td>
+                                                        <td align="right"><input type="radio" name="gender"
+                                                                value="male"></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" align="left">
+                        <font face="tahoma" size="2" color="#808080">
+                            เมื่อคลิก สมัคร แสดงว่าคุณยอมรับข้อกำหนด นโยบายข้อมูล <br>
+                            และ นโยบายคุกกี้ของเรา คุณอาจได้รับการแจ้งเตือนทาง SMS<br>
+                            จากเรา และไม่สามารถเลือกไม่รับได้ในภายหลัง
+                        </font>
                     </td>
                 </tr>
                 <tr bgcolor="#4CAF50">
-                    <td colspan="3" align="center"><input type="submit" value="สมัคร"></td>
+                    <td colspan="4" align="center"><input type="submit" value="สมัคร"></td>
                 </tr>
-
 
             </table>
         </form>
