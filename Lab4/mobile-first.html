@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        main {
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #dddddd;
+            margin-top: 14px;
+        }
+
+        @media (min-width: 768px) {
+            
+            header {
+                text-align: left;
+                padding: 20px;
+            }
+
+            nav {
+                flex-direction: row;
+            }
+
+            main {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            img {
+            max-width: 100%;
+            height: auto;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            
+            body {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            header {
+                padding: 30px 40px;
+            }
+
+            main {
+                grid-template-columns: repeat(3,1fr);
+            }
+
+            img {
+            max-width: 100%;
+            height: auto;
+            }
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mobile-First Approach</h1>
+        <p>เริ่มออกแบบจากมือถือ แล้วค่อยขยายไปยังหน้าจอขนาดใหญ่</p>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="card">
+            <h3>แนวคิด Mobile-First</h3>
+            <p>การออกแบบเว็บไซต์เริ่มจากหน้าจอขนาดเล็ก (มือถือ) แล้วขยายไปยังหน้าจอขนาดใหญ่ (คอมพิวเตอร์)</p>
+        </div>
+
+        <div class="card">
+            <h3>ข้อดีของ Mobile-First</h3>
+            <ul>
+                <li>ประสบการณ์การใช้งานที่ดีบนมือถือ</li>
+                <li>โหลดหน้าเว็บได้เร็วขึ้น</li>
+                <li>เหมาะกับผู้ใช้ที่เข้าถึงผ่านมือถือมากขึ้น</li>
+            </ul>
+        </div>
+
+    <div class="card">
+        <h3>การใช้งานจริง</h3>
+        <p>ใช้ร่วมกับ Responsive Design ในการออกแบบเว็บไซต์ที่เหมาะสมกับทุกขนาดหน้าจอ</p>
+    </div>
+
+    <img src="https://ichef.bbci.co.uk/ace/standard/981/cpsprodpb/5c38/live/16192430-f5ef-11ef-bd6e-cd71c2e1454a.jpg" alt="Placeholder Image">
+    
+    </main>
+
+    <footer>
+        <p>รายวิชา ENGSE611 - Modern Web Technology Development</p>
+    
+</body>
+</html>
