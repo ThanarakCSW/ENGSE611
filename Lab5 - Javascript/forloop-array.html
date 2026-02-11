@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Loop and Array Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background: #f4f4f4;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Javascript For Loop & Array</h1>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        // 1. ประกาศตัวแปร Array (Define an Array)
+        const students = ["Alice", "Bob", "Charlie", "David", "Eve"];
+
+        // เตรียมตัวแปรสำหรับเก็บ HTML output
+        let htmlOutput = "<h3>รายชื่อนักเรียน (Student List):</h3><ul>";
+
+        // 2. ใช้ For Loop วนลูปเพื่อเข้าถึงสมาชิกใน Array (Iterate using For Loop)
+        for (let i = 0; i < students.length; i++) {
+            // แสดงผลใน Console
+            console.log(`Student ${i + 1}: ${students[i]}`);
+
+            // เพิ่มข้อมูลลงใน HTML structure
+            htmlOutput += `<li>ลำดับที่ ${i + 1}: ${students[i]}</li>`;
+        }
+
+        htmlOutput += "</ul>";
+
+        // 3. แสดงผลบนหน้าเว็บ (Display on Web Page)
+        document.getElementById("output").innerHTML = htmlOutput;
+    </script>
+
+</body>
+
+</html>
