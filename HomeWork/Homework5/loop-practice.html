@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Loop Practice</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            padding: 20px;
+            background-color: #f3f3f3;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid #ffa200;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        button {
+            background-color: #ffa200;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #ffa200;
+        }
+
+        /* พื้นที่แสดงผลแบบ Console จำลอง */
+        .output-section {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #e9ecef;
+            margin-bottom: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .output-header {
+            font-weight: bold;
+            color: #ffa200;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .output-line {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            border-bottom: 1px solid #ddd;
+            padding: 2px 0;
+        }
+
+        .even {
+            color: #0056b3;
+        }
+
+        /* สีสำหรับเลขคู่ */
+        .odd {
+            color: #d63384;
+        }
+
+        /* สีสำหรับเลขคี่ */
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <h2>แบบฝึกหัด Loop (Control Flow)</h2>
+        <p>กดปุ่มเพื่อเริ่มทำงาน For Loop ทั้ง 3 รูปแบบ</p>
+        <button onclick="runLoops()">รันโปรแกรม Loop</button>
+
+        <div id="outputBox">
+            <i>ผลลัพธ์จะปรากฏที่นี่...</i>
+        </div>
+    </div>
+
+    <script>
+        function runLoops() {
+            console.clear();
+            let htmlContent = ""; // ตัวแปรสะสม HTML เพื่อไปแสดงผลทีเดียว
+            let maxNumber = 20;
+
+            //Loop 0 ถึง maxNumber เช็คคู่/คี่
+            htmlContent += `<span class="output-header">1. ตรวจสอบเลขคู่/คี่ (0-${maxNumber})</span>`;
+            htmlContent += `<div class="output-section">`;
+
+            console.log("--- 1. เช็คเลขคู่/คี่ ---");
+            for (let i = 0; i <= maxNumber; i++) {
+                let text = "";
+                let cssClass = "";
+
+                if (i % 2 === 0) {
+                    text = `${i} (คู่)`;
+                    cssClass = "even";
+                } else {
+                    text = `${i} (คี่)`;
+                    cssClass = "odd";
+                }
+
+                // เพิ่มลงใน HTML และ Console
+                htmlContent += `<div class="output-line ${cssClass}">${text}</div>`;
+                console.log(text);
+            }
+            htmlContent += `</div>`;
+
+            //นับทีละ 2
+            htmlContent += `<span class="output-header">2. นับเพิ่มทีละ 2</span>`;
+            htmlContent += `<div class="output-section">`;
+
+            console.log("--- 2. นับทีละ 2 ---");
+            for (let i = 0; i <= maxNumber; i += 2) {
+                let text = `นับทีละ 2: ${i}`;
+                htmlContent += `<div class="output-line">${text}</div>`;
+                console.log(text);
+            }
+            htmlContent += `</div>`;
+
+            //นับถอยหลัง
+            htmlContent += `<span class="output-header">3. นับถอยหลัง (10 -> 0)</span>`;
+            htmlContent += `<div class="output-section">`;
+
+            console.log("--- 3. นับถอยหลัง ---");
+            for (let i = 10; i >= 0; i--) {
+                let text = `ถอยหลัง: ${i}`;
+                htmlContent += `<div class="output-line">${text}</div>`;
+                console.log(text);
+            }
+            htmlContent += `</div>`;
+
+            // แสดงผลลัพธ์ทั้งหมดออกทางหน้าจอ
+            document.getElementById("outputBox").innerHTML = htmlContent;
+        }
+    </script>
+
+</body>
+
+</html>

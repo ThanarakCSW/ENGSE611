@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Grade Switch</title>
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            padding: 20px;
+            background-color: #f3f3f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid #ffa200;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        button {
+            background-color: #ffa200;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #ffa200;
+        }
+
+        #outputBox {
+            margin-top: 20px;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #444;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #e9ecef;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #d63384;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <h2>ตรวจสอบเกรดและคำอธิบาย (Switch)</h2>
+        <button onclick="calculateGrade()">คำนวณเกรด</button>
+        <div id="outputBox">กรุณากดปุ่มเพื่อเริ่มทำงาน...</div>
+    </div>
+
+    <script>
+        function calculateGrade() {
+            // 1. สุ่มคะแนนเหมือนเดิม
+            let score = Math.floor(Math.random() * 101);
+            let grade = "";
+
+            // ตัดเกรด
+            if (score >= 80) grade = "A";
+            else if (score >= 70) grade = "B";
+            else if (score >= 60) grade = "C";
+            else if (score >= 50) grade = "D";
+            else grade = "F";
+
+            // ตรวจสอบผลสอบ
+            let status = (score >= 50) ? "ผ่าน" : "ไม่ผ่าน";
+
+            // 2. ใช้ Switch Statement เพื่อเลือกคำอธิบาย
+            let description = "";
+            switch (grade) {
+                case "A":
+                    description = "ยอดเยี่ยมมาก";
+                    break;
+                case "B":
+                    description = "ดีมาก รักษามาตรฐานไว้";
+                    break;
+                case "C":
+                    description = "ผ่านเกณฑ์ระดับดี";
+                    break;
+                case "D":
+                    description = "พอใช้ แต่ควรพัฒนาเพิ่ม";
+                    break;
+                case "F":
+                    description = "ต้องลงทะเบียนเรียนใหม่";
+                    break;
+                default:
+                    description = "ไม่ระบุ";
+            }
+
+            let outputHTML = `
+            คะแนนที่สุ่มได้: <b>${score}</b><br>
+            เกรด: <span class="highlight">${grade}</span><br>
+            ผลสอบ: ${status}<br>
+            คำอธิบาย: <i>"${description}"</i>
+        `;
+
+            document.getElementById("outputBox").innerHTML = outputHTML;
+
+            // Console Log
+            console.clear();
+            console.log(`คะแนน: ${score}, เกรด: ${grade}`);
+            console.log(`ผลสอบ: ${status}`);
+            console.log(`คำอธิบาย: ${description}`);
+        }
+    </script>
+
+</body>
+
+</html>
