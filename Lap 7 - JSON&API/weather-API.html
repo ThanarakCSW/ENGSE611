@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Weather API - ดอยสะเก็ด</title>
+    <!-- Google Fonts: Prompt for Thai-English readability -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            /* Indigo */
+            --bg-gradient: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            padding: 20px;
+        }
+
+        .container {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 500px;
+            transition: transform 0.3s ease;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            background: linear-gradient(to right, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            font-weight: 300;
+        }
+
+        .weather-card {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-main);
+        }
+
+        button {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3);
+        }
+
+        button:hover {
+            background: #4338ca;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .loading-spinner {
+            display: none;
+            margin: 0 auto;
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(255, 255, 255, .3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .error-msg {
+            color: #fca5a5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>ตัวอย่าง Weather API</h1>
+            <h2>อำเภอดอยสะเก็ด จังหวัดเชียงใหม่</h2>
+        </header>
+
+        <div class="weather-card">
+            <div id="loading" class="loading-spinner"></div>
+            <pre id="result">กดปุ่มเพื่อโหลดข้อมูล...</pre>
+        </div>
+
+        <button id="loadWeather">โหลดข้อมูลสภาพอากาศ</button>
+    </div>
+
+    <script>
+        // ดึง element จากหน้าเว็บ
+        const button = document.getElementById("loadWeather");
+        const result = document.getElementById("result");
+        const loading = document.getElementById("loading");
+
+        // เมื่อกดปุ่มให้เรียก API
+        button.addEventListener("click", async () => {
+            // แสดงสถานะกำลังโหลด
+            result.textContent = "";
+            loading.style.display = "block";
+            button.disabled = true;
+
+            // URL ของ Weather API (Open-Meteo) https://open-meteo.com/
+            // latitude และ longitude ของอำเภอดอยสะเก็ด
+            const url =
+                "https://api.open-meteo.com/v1/forecast" +
+                "?latitude=18.878&longitude=99.136" +
+                "&current=temperature_2m,relative_humidity_2m,wind_speed_10m";
+
+            try {
+                // ส่ง request ไปยัง API
+                const response = await fetch(url);
+
+                // ตรวจสอบว่าการเชื่อมต่อสำเร็จหรือไม่
+                if (!response.ok) {
+                    throw new Error("ไม่สามารถเชื่อมต่อ API ได้");
+                }
+
+                // แปลงข้อมูล JSON ที่ได้จาก server ให้เป็น JavaScript Object
+                const data = await response.json();
+
+                // ดึงข้อมูลสภาพอากาศปัจจุบันจาก JSON
+                const weather = data.current;
+
+                // แสดงผลข้อมูลบนหน้าเว็บ
+                result.textContent =
+                    "สถานที่ : อำเภอดอยสะเก็ด จังหวัดเชียงใหม่\n" +
+                    "อุณหภูมิ : " + weather.temperature_2m + " °C\n" +
+                    "ความชื้น : " + weather.relative_humidity_2m + " %\n" +
+                    "ความเร็วลม : " + weather.wind_speed_10m + " km/h\n" +
+                    "เวลา : " + weather.time;
+
+                // แสดงโครงสร้าง JSON ใน Console
+                console.log(data);
+
+            } catch (error) {
+                // หากเกิดข้อผิดพลาดให้แสดงข้อความ
+                result.innerHTML = '<span class="error-msg">เกิดข้อผิดพลาด : ' + error.message + '</span>';
+            } finally {
+                loading.style.display = "none";
+                button.disabled = false;
+            }
+        });
+    </script>
+
+</body>
+
+</html>
